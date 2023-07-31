@@ -1,7 +1,7 @@
 const initialState = {
-    user: null, // информация о залогиненном пользователе
-    loading: false, // флаг загрузки при выполнении запроса
-    error: null, // ошибка при неудачном входе
+    user: null,
+    loading: false,
+    error: null,
 };
 
 const authReducer = (state = initialState, action) => {

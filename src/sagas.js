@@ -35,34 +35,25 @@ function* userLogIn(action) {
     try {
         const { email, password } = action.payload;
         const usersRef = firebase.database().ref('Accounts');
-
-        // Выполнить запрос к базе данных по указанной электронной почте
         const snapshot = yield usersRef.orderByChild('email').equalTo(email).once('value');
 
         if (snapshot.exists()) {
-            // Пользователь с такой электронной почтой найден в базе данных
             const userData = snapshot.val();
             const userId = Object.keys(userData)[0];
 
             if (userData[userId].password === password) {
-                // Пароль совпадает, авторизация успешна
                 const user = {
                     email: userData[userId].email,
-                    // Добавьте другие поля пользователя, если они есть в базе данных
-                    // например, имя, фото профиля, и т. д.
                 };
                 yield put(loginSuccess(user));
             } else {
-                // Пароль неправильный
-                // Отправьте действие для отображения сообщения об ошибке или обработайте его в соответствии с логикой вашего приложения
+                yield put(showErrorMessage('Incorrect password'));
             }
         } else {
-            // Пользователь с такой электронной почтой не найден в базе данных
-            // Отправьте действие для отображения сообщения об ошибке или обработайте его в соответствии с логикой вашего приложения
+            yield put(showErrorMessage('User not found'));
         }
     } catch (error) {
-        // Обработка ошибки
-        // Отправьте действие для отображения сообщения об ошибке или обработайте его в соответствии с логикой вашего приложения
+        yield put(showErrorMessage(error.message));
     }
 }
 
