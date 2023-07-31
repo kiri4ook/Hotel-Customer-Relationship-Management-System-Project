@@ -5,7 +5,7 @@ import AuthorizationPage from './pages/authorization-page/AuthorizationPage';
 function App() {
   return (
     <div className="App-container">
-      <AuthorizationPage />
+      <MainLayout ></MainLayout>
     </div>
   );
 }
