@@ -4,12 +4,28 @@ body {
     background-color: #0e06b3;
 }
   
-.container {
-    max-width: 800px;
+.App-container {
     margin: 0 auto;
-    font-size: 45px;
-    display: flex;
-    justify-content: center;
+}
+
+.Space {
+    width: 100%;
 }
   
+.layout-header {
+    text-align: center;
+    color: #fff;
+    height: 64;
+    padding-inline: 50;
+    line-height: 64px;
+    background-color: #7dbcea;
+}
   
+.layout-content {
+    text-align: center;
+    min-height: 120;
+    line-height: 120px;
+    color: #fff;
+    background-color: #108ee9;
+    height: 100vh;
+}

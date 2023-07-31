@@ -1,9 +1,11 @@
 import "./styles/styles.scss";
+import MainLayout from "./components/main-layout/MainLayout";
+import AuthorizationPage from './pages/authorization-page/AuthorizationPage';
 
 function App() {
   return (
-    <div className="container">
-      <p>Hello</p>
+    <div className="App-container">
+      <AuthorizationPage />
     </div>
   );
 }
