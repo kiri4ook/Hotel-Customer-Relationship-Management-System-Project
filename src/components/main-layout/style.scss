@@ -1,0 +1,61 @@
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    user-select: none; 
+}
+
+.Space {
+    width: 100%;
+}
+
+.layout-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #001529;
+
+    .header-logo {
+        height: 80%;
+        width: 50px;
+        @include flex-center;
+
+        .header-logo-img {
+            height: 100%;
+        }
+    }
+
+    .header-logOut {
+        @include flex-center;
+        background-color: #001529;
+        border: none;
+        cursor: pointer;
+        height: 70%;
+
+        .header-user-icon {
+            height: 100%;
+        }
+        
+        .header-logout-text {
+            color: white;
+            margin-left: 10px;
+        }
+        
+    }
+}
+    
+.layout-content {
+    padding-top: 60px;
+    background-color: #eeeeee;
+}

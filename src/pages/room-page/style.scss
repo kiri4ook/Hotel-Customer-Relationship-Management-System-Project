@@ -1,0 +1,124 @@
+$white-color: #eeeeee;
+$second-white-color: #f8f8f8;
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-wrapper {
+    max-width: 100%;
+    height: 100vh;
+    margin: 50px;
+    background-color: $white-color;
+
+    .room-header {
+        height: 60px;
+    
+        .back-button {
+            border: none;
+            background-color: $white-color;
+            color: #00bbff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+
+    .room-info {
+        display: flex;
+        justify-content: space-between;
+        width:calc(100% - 20px);
+    
+        .room-data {
+            display: flex;
+            height: 50%;
+    
+            .room-gallery {
+                height: calc(100% - 20px);
+                width: calc(75% - 20px);
+    
+                .room-img {
+                    width: 100%;
+                    height: 100%;
+                }
+                
+                .gallery-buttons {
+                    @include flex-center;
+                    background-color: $white-color;
+    
+                    .gallery-btn {
+                        border: none;
+                        font-size: 20px;
+                        cursor: pointer;
+                        margin: 10px;
+                    }                
+                }
+            }
+    
+            .room-data-info {
+                margin-left: 20px;
+                width: calc(20% - 20px);
+    
+                .room-number {
+                    text-decoration: underline;
+                }
+            }
+        }
+    
+        .right-block-wrapper {
+            width: calc(35% - 10px);
+    
+            .check-buttons {
+                @include flex-center;
+    
+                .check-buttons button {
+                    height: 30px;
+                    border-radius: 3px;
+                    display: inline-block;
+                    width: fit-content;
+                    padding: 0 15px 0 15px;
+                    cursor: pointer;
+                }
+    
+                .check-in-button {
+                    margin-right: 20px;
+                    border: 1px solid rgb(209, 209, 209);
+                    background-color: $second-white-color;
+                    color: #a2a2a2;
+                    
+                }
+                
+                .check-out-button {
+                    border: none;
+                    background-color: #00bbff;
+                    color: $second-white-color;
+                }            
+            }
+            
+            .room-features ul {
+                list-style-type: none;
+                padding-left: 0;
+    
+                .room-features li {
+                    position: relative;
+                    line-height: 1.5;
+                    list-style: inside '\2713  ';
+                }
+                
+            }
+        }    
+    }
+
+    .room-description {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: row;
+
+        .description-text {
+            margin-left: 10px;
+        }
+    }
+    
+}

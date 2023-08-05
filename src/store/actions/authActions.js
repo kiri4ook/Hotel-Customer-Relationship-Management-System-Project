@@ -1,6 +1,6 @@
-export const login = (email, password) => ({
+export const login = (isAuthorized) => ({
     type: 'LOGIN',
-    payload: { email, password },
+    isAuthorized,
 });
 
 export const loginSuccess = (user) => ({

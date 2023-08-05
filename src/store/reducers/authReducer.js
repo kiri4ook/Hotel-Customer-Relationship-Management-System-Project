@@ -1,4 +1,5 @@
 const initialState = {
+    isAuthorized: false,
     user: null,
     loading: false,
     error: null,
@@ -9,12 +10,14 @@ const authReducer = (state = initialState, action) => {
         case 'SIGN_IN_REQUEST':
             return {
                 ...state,
+                isAuthorized: true,
                 loading: true,
                 error: null,
             };
         case 'LOGIN_SUCCESS':
             return {
                 ...state,
+                isAuthorized: true,
                 user: action.payload,
                 loading: false,
                 error: null,
