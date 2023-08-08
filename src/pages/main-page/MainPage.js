@@ -3,6 +3,7 @@ import './style.scss';
 import db from '../../firebaseConfig';
 import { Table } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { Input } from 'antd';
 
 const MainPage = () => {
     const [data, setData] = useState([]);
@@ -97,7 +98,7 @@ const MainPage = () => {
     return (
         <div className='table-wrapper'>
             <div className='checkbox-wrapper'>
-                <input type='checkbox' id='freeRoomsCheckbox' checked={showOnlyFreeRooms} onChange={handleCheckboxChange} />
+                <Input className='checkbox' type='checkbox' id='freeRoomsCheckbox' checked={showOnlyFreeRooms} onChange={handleCheckboxChange} />
                 <label htmlFor='freeRoomsCheckbox'>Free rooms only</label>
             </div>
             <Table

@@ -1,20 +1,48 @@
 .form-wrapper {
+    font-family: Arial, Helvetica, sans-serif ;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     height: 100vh;
     align-items: center;
     background-color: #3b84e2;
 
     .form {
-        width: calc(32% - 10px);
+        width: calc(40% - 10px);
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        padding: 20px;
+
+        .form-item {
+            margin-left: 10px;
+        }
 
         .form-input {
             font-size: 20px;
+        }
+
+        .login-error-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
         
         .login-error-message {
             color: #ff0000;
             font-size: 23px;
+        }
+
+        .btn-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+            .logIn-btn {
+                width: 130px;
+                border-radius: 1px;
+            }
         }
     }
     

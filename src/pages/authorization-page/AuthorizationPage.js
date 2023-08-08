@@ -66,15 +66,6 @@ const AuthorizationPage = ({ setAuthorized }) => {
                 form={form}
                 name="basic"
                 className='form'
-                labelCol={{
-                    span: 8,
-                }}
-                wrapperCol={{
-                    span: 16,
-                }}
-                style={{
-                    maxWidth: 600,
-                }}
                 initialValues={{
                     remember: rememberMe,
                 }}
@@ -82,6 +73,8 @@ const AuthorizationPage = ({ setAuthorized }) => {
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
+                <h3>Authentication</h3>
+                <hr className="horizontal-line" />
                 <Form.Item
                     className='form-item'
                     label="Username"
@@ -97,6 +90,7 @@ const AuthorizationPage = ({ setAuthorized }) => {
                 </Form.Item>
 
                 <Form.Item
+                    className='form-item'
                     label="Password"
                     name="password"
                     rules={[
@@ -112,22 +106,14 @@ const AuthorizationPage = ({ setAuthorized }) => {
                 <Form.Item
                     name="remember"
                     valuePropName="checked"
-                    wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                    }}
                 >
-                    {loginError && <div className='login-error-message'>Пользователь не найден</div>}
                     <Checkbox onChange={(e) => setRememberMe(e.target.checked)}>Remember me</Checkbox>
                 </Form.Item>
-
-                <Form.Item
-                    wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                    }}
-                >
-                    <Button type="primary" htmlType="submit">
+                <div className='login-error-wrapper'>
+                    {loginError && <div className='login-error-message'>User is not found</div>
+                    }</div>
+                <Form.Item className='btn-wrapper'>
+                    <Button type="primary" htmlType="submit" className='logIn-btn'>
                         Log in
                     </Button>
                 </Form.Item>

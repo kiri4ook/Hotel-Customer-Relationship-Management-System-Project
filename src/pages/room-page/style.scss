@@ -10,7 +10,7 @@ $second-white-color: #f8f8f8;
 .page-wrapper {
     max-width: 100%;
     height: 100vh;
-    margin: 50px;
+    margin: 30px 50px 50px;
     background-color: $white-color;
 
     .room-header {
@@ -19,9 +19,10 @@ $second-white-color: #f8f8f8;
         .back-button {
             border: none;
             background-color: $white-color;
-            color: #00bbff;
+            color: #0080ff;
             font-size: 15px;
             font-weight: 600;
+            box-shadow: none;
             cursor: pointer;
         }
     }
@@ -73,7 +74,8 @@ $second-white-color: #f8f8f8;
             .check-buttons {
                 @include flex-center;
     
-                .check-buttons button {
+                .check-in-button {
+                    margin-right: 20px;
                     height: 30px;
                     border-radius: 3px;
                     display: inline-block;
@@ -81,20 +83,28 @@ $second-white-color: #f8f8f8;
                     padding: 0 15px 0 15px;
                     cursor: pointer;
                 }
-    
-                .check-in-button {
-                    margin-right: 20px;
-                    border: 1px solid rgb(209, 209, 209);
-                    background-color: $second-white-color;
-                    color: #a2a2a2;
-                    
-                }
                 
                 .check-out-button {
-                    border: none;
+                    height: 30px;
+                    border-radius: 3px;
+                    display: inline-block;
+                    width: fit-content;
+                    padding: 0 15px 0 15px;
+                    cursor: pointer;
+                }     
+                
+                .has-guests {
+                    background-color: $second-white-color;
+                    color: #a2a2a2;
+                    border: 1px solid rgb(209, 209, 209);
+                }
+                  
+                .no-guests {
                     background-color: #00bbff;
-                    color: $second-white-color;
-                }            
+                    color: $white-color;
+                    border: none;
+                    
+                }
             }
             
             .room-features ul {

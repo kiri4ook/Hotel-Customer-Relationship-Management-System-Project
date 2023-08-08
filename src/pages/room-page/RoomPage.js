@@ -2,12 +2,19 @@ import React, { useEffect, useState } from 'react';
 import './style.scss';
 import db from '../../firebaseConfig';
 import { useNavigate, useParams } from 'react-router-dom';
+import CheckInModal from '../../components/check-in/CheckInModal';
+import CheckOutModal from '../../components/check-out/CheckOutModal';
+import { Button } from 'antd';
+import { HomeTwoTone } from '@ant-design/icons';
+import moment from 'moment';
 
 const RoomPage = () => {
     const [room, setRoom] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const navigate = useNavigate();
     const { roomId } = useParams();
+    const [isCheckInModalVisible, setIsCheckInModalVisible] = useState(false);
+    const [isCheckOutModalVisible, setIsCheckOutModalVisible] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -15,6 +22,16 @@ const RoomPage = () => {
                 const snapshot = await db.ref('Hotel DB/Rooms').once('value');
                 const dataFromFirebase = snapshot.val();
                 const selectedRoom = dataFromFirebase[roomId];
+                if (selectedRoom && selectedRoom.checkOutDate) {
+                    const checkOutDate = moment(selectedRoom.checkOutDate, 'DD-MM-YYYY');
+                    const currentDate = moment();
+
+                    if (checkOutDate.isSameOrBefore(currentDate, 'day')) {
+                        const updatedRoom = { ...selectedRoom, guest: '' };
+                        setRoom(updatedRoom);
+                    }
+                }
+
                 setRoom(selectedRoom);
             } catch (error) {
                 console.error('Error fetching data: ', error);
@@ -38,12 +55,17 @@ const RoomPage = () => {
         );
     };
 
+    const handleUpdateGuest = (updatedGuestData) => {
+        const updatedRoom = { ...room, guest: updatedGuestData };
+        setRoom(updatedRoom);
+    };
+
     return (
         <>
             {room && (
                 <div className="page-wrapper">
                     <div className='room-header'>
-                        <button className='back-button' onClick={handleBackHome}>Back Home</button>
+                        <Button className='back-button' onClick={handleBackHome}><HomeTwoTone /> Back Home</Button>
                     </div>
 
                     <div className="room-info">
@@ -69,8 +91,8 @@ const RoomPage = () => {
                         </div>
                         <div className="right-block-wrapper">
                             <div className='check-buttons'>
-                                <button className='check-in-button'>Check In</button>
-                                <button className='check-out-button'>Check Out</button>
+                                <button className={`check-in-button ${room.guest ? 'has-guests' : 'no-guests'}`} onClick={() => setIsCheckInModalVisible(true)}>Check In</button>
+                                <button className={`check-out-button ${room.guest ? 'no-guests' : 'has-guests'}`} onClick={() => setIsCheckOutModalVisible(true)}>Check Out</button>
                             </div>
                             <div className='room-features'>
                                 <p><strong>Features:</strong></p>
@@ -86,11 +108,26 @@ const RoomPage = () => {
                         <p><strong>Description: </strong></p>
                         <p className='description-text'> {room.description}</p>
                     </div>
-                </div>
+                    <CheckInModal
+                        visible={isCheckInModalVisible}
+                        onClose={() => setIsCheckInModalVisible(false)}
+                        roomId={roomId}
+                        onUpdateGuest={handleUpdateGuest} />
+                    <CheckOutModal
+                        visible={isCheckOutModalVisible}
+                        onClose={() => setIsCheckOutModalVisible(false)}
+                        roomId={roomId}
+                        numberRoom={room.number}
+                        onUpdateGuest={handleUpdateGuest} />
+                </div >
+
             )}
+
+
         </>
 
     );
+
 }
 export default RoomPage;
 
